@@ -1,10 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
-export { ServerResponse as Res }
-
 
 export interface Operater {
-    setCookie(val: string): void
+    setCookie?(val: string): void
 }
 
 export interface Req extends IncomingMessage {
@@ -13,12 +11,16 @@ export interface Req extends IncomingMessage {
     query?: any
     /** post携带data */
     body?: any
-    cookie?:  {
-        [name:string]: any
+    cookie?: {
+        [name: string]: any
     }
 }
 
 
+export interface Res extends ServerResponse {
+    json?<T extends object>(data: T): void
+}
 
-export type ReturnParameters<T> = T extends (...rest: infer P) => any 
+
+export type ReturnParameters<T> = T extends (...rest: infer P) => any
     ? P : any

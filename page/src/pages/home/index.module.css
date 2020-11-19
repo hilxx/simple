@@ -1,4 +1,9 @@
 .wrap {
     display      : grid;
-    grid-template: 1fr 1fr 1fr 1fr / 10rem;
+    grid-template: auto / auto auto auto;
+}
+
+.wrap>*:first-child {
+    display      : grid;
+    grid-template: auto / 1fr 1fr;
 }

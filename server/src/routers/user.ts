@@ -23,9 +23,8 @@ const
               return  await login(username, password)
                     .then(data => {
                         if (!data) return new ErrorModule(data, '密码错误')
-                        console.log(data);
                         const newCookie = loginSucessHandleCookie(req.cookie, data)
-                        operator.setCookie(newCookie)
+                        operator.setCookie!(newCookie)
                         return new SuccessModule(data, '登录成功')
                     })
             return new ErrorModule(null, '账号密码错误')

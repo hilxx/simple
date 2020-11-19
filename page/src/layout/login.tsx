@@ -9,16 +9,14 @@ const LoginWrap: React.FC = (props) => {
     const [userData, setUserData] = useState(Object.prototype)
 
     useEffect(() => {
-        Axios('/api/user/is_login').then((res: any) => {
+        Axios('/api/user/check_login').then((res: any) => {
             if (res.data.data) {
-                setUserData(res.data.data)
-            } 
-        })
-    }, [])
 
-    useEffect(() => {
-       userData || history.replace('/login') 
-    }, [history, userData])
+                setUserData(res.data.data)
+            } else history.replace('/login')
+        })
+    }, [history])
+
 
     return (
         <UserContext.Provider value={userData}>
